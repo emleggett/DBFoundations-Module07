@@ -670,7 +670,7 @@ GO
 -- SELECT
 -- 	ProductName
 -- 	,InventoryDate
--- 	,InventoryCount AS InventoryCount
+-- 	,InventoryCount
 -- 	,LAG(InventoryCount,1) OVER(PARTITION BY ProductName ORDER BY(MONTH(InventoryDate))) AS PreviousMonthCount
 -- FROM vProductInventories
 -- ;
@@ -681,7 +681,7 @@ GO
 -- SELECT
 -- 	ProductName
 -- 	,InventoryDate
--- 	,InventoryCount AS InventoryCount
+-- 	,InventoryCount
 -- 	,ISNULL(LAG(InventoryCount,1) OVER(PARTITION BY ProductName ORDER BY(MONTH(InventoryDate))),0) AS PreviousMonthCount
 -- FROM vProductInventories
 -- ;
@@ -694,7 +694,7 @@ CREATE VIEW vProductInventoriesWithPreviousMonthCounts
 		SELECT
 			ProductName
 			,InventoryDate
-			,InventoryCount AS InventoryCount
+			,InventoryCount
 			,ISNULL(LAG(InventoryCount,1) OVER(PARTITION BY ProductName ORDER BY(MONTH(InventoryDate))),0) AS PreviousMonthCount
 		FROM vProductInventories
 ;
